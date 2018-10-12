@@ -1,21 +1,24 @@
+
 <template>
   <div class="members container">
-    
-<h1 class="page-header">Members</h1>
+     <Alert v-if="alert" v-bind:message="alert" /> 
+     
+ <!-- class="alert alert-success   alert-dismissible fade show" -->
+  <h1 class="page-header">Members</h1>
 
   <table class="table table-stripped">
     <thead>
       <td>Nickname</td>
       <td>First Name</td>
       <td>Last Name </td>
-      <th></th>
+      <th>Actions</th>
     </thead>
     <tbody>
       <tr v-for="member in members">
         <td>{{member.nickname}}</td>
         <td>{{member.first_name}}</td>
         <td>{{member.last_name}}</td>
-         <td></td>
+         <td><router-link class="btn btn-success" v-bind:to="'/member/'+member.id">View</router-link></td>
          </tr>
     </tbody>
   </table>
@@ -25,6 +28,7 @@
 </template> 
 
 <script>
+import Alert from './Alert.vue';
 export default {
   name: 'members',
   // props: {
@@ -33,7 +37,8 @@ export default {
   data() {
     members: [];
     return {
-      members: []
+      members: [],
+      alert: ''
     };
   },
   methods: {
@@ -47,9 +52,17 @@ export default {
   },
   created: function() {
     this.fetchMembers();
+
+    if (this.$route.query.alert) {
+      // console.log(this.$route.query.alert);
+      this.alert = this.$route.query.alert;
+    }
   },
   updated: function() {
     this.fetchMembers();
+  },
+  components: {
+    Alert
   }
 };
 </script>

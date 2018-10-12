@@ -1,13 +1,19 @@
 <template>
-  <div class="home container">
-    <h1 class="page-header">home</h1>
+  <div class="alert container">
+    <div class="alert alert-warning  alert-dismissible fade show" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {{message}}
+</div>
   </div>
    
 </template> 
 
 <script>
 export default {
-  name: 'home',
+  name: 'alert',
+  props: ['message'],
   data() {
     return {};
   }

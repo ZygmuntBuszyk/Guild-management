@@ -1,8 +1,8 @@
 <template>
-  <div class="addMember container">
-   <h1>Add member</h1>
+  <div class="editMember container">
+   <h1>Edit member's info</h1>
 
-   <form v-on:submit="addMember">
+   <form v-on:submit="editMember">
      <!-- About -->
      <div class="card card-body bg-light">
         <h3>About</h3>
@@ -62,16 +62,16 @@
 
 <script>
 export default {
-  name: 'addMember',
+  name: 'editMember',
   data() {
     return {
       member: {}
     };
   },
   methods: {
-    addMember(e) {
+    editMember(e) {
       e.preventDefault();
-      let newMember = {
+      let editedMember = {
         first_name: this.member.first_name,
         last_name: this.member.last_name,
         nickname: this.member.nickname,
@@ -82,13 +82,16 @@ export default {
       };
       console.log(newMember);
       this.$http
-        .post('http://phpslimapiapp/api/member/add', newMember)
+        .put(
+          'http://phpslimapiapp/api/member/update/' + this.$route.params.id,
+          editedMember
+        )
         .then(function(res) {
           // redirect after adding
           this.$router.push({
             path: '/members',
             query: {
-              alert: '' + newMember.nickname + ' ' + 'was added to your guild'
+              alert: '' + editedMember.nickname + ' ' + 'got edited'
             },
             component: true
           });

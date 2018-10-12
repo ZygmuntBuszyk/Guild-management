@@ -5,6 +5,8 @@ import vueResource from 'vue-resource'; //do api
 import Members from './components/Members.vue';
 import Home from './components/Home.vue';
 import Add from './components/AddMember.vue';
+import Details from './components/MemberDetails.vue';
+import Edit from './components/EditMember.vue';
 
 Vue.use(vueResource);
 Vue.use(VueRouter);
@@ -18,7 +20,7 @@ const router = new VueRouter({
   routes: [
     { path: '/members', name: 'members', component: Members },
     {
-      path: '/home',
+      path: '/',
       name: 'home',
       component: Home
     },
@@ -26,6 +28,16 @@ const router = new VueRouter({
       path: '/addMember',
       name: 'add',
       component: Add
+    },
+    {
+      path: '/member/:id',
+      name: 'details',
+      component: Details
+    },
+    {
+      path: '/member/edit/:id',
+      name: 'edit',
+      component: Edit
     }
   ]
 });
