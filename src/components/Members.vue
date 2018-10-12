@@ -51,6 +51,7 @@ export default {
         });
     },
     filterBy(list, value) {
+      // value = value.charAt(0).toUpperCase() + value.slice(1); naprawia wyszukwanie duzych liter/ szuka tylko po dużych
       return list.filter(function(member) {
         return member.nickname.indexOf(value) > -1;
       });
