@@ -1,26 +1,9 @@
-# my-project
+GUILD APP 
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+..Add Members
+..Remove Members 
+..Eddit Members
+Check em (Api Fetch REQ to my own API that was build with PHP and Mysql database)
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
