@@ -1,6 +1,9 @@
 <template>
   <div class="details container">
-    <h1 class="pb-2 mt-4 mb-4 border-bottom">{{member.nickname}} <span class="right"><button class="btn btn-danger" v-on:click="deleteMember(member.id, member.nickname)">Delete</button></span> </h1>
+    <h1 class="pb-2 mt-4 mb-4 border-bottom">{{member.nickname}}
+    
+     <span class="right"><button class="btn btn-danger" v-on:click="deleteMember(member.id, member.nickname)">Delete</button></span> 
+     <span class="right"> <router-link class="btn btn-primary" v-bind:to ="'/member/edit/'+member.id"> Edit</router-link></span></h1>
    
     <ul>
       <li class="list-group-item"><strong>First Name: </strong> {{member.first_name}}</li>
@@ -57,10 +60,12 @@ export default {
 }
 .right {
   float: right;
+  margin-left: 5px;
 }
-@media (max-width: 300px) {
+@media (max-width: 321px) {
   .right {
     float: none;
+    display: inline-block;
   }
   .list-group-item strong {
     display: none;

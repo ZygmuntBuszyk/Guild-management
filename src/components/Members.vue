@@ -5,7 +5,7 @@
      
  <!-- class="alert alert-success   alert-dismissible fade show" -->
   <h1 class="page-header">Members</h1>
-
+  <input type="text" class="form-control" placeholder="Search.." v-model="filterInput">
   <table class="table table-stripped">
     <thead>
       <td>Nickname</td>
@@ -14,7 +14,7 @@
       <th>Actions</th>
     </thead>
     <tbody>
-      <tr v-for="member in members">
+      <tr v-for="member in filterBy(members, filterInput)">
         <td>{{member.nickname}}</td>
         <td>{{member.first_name}}</td>
         <td>{{member.last_name}}</td>
@@ -38,7 +38,8 @@ export default {
     members: [];
     return {
       members: [],
-      alert: ''
+      alert: '',
+      filterInput: ''
     };
   },
   methods: {
@@ -48,6 +49,11 @@ export default {
         .then(function(response) {
           this.members = response.body;
         });
+    },
+    filterBy(list, value) {
+      return list.filter(function(member) {
+        return member.nickname.indexOf(value) > -1;
+      });
     }
   },
   created: function() {

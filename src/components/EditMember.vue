@@ -54,7 +54,7 @@
      Contact: skype,phone,email
      Additional: country -->
   
-<button type="submit" class="btn btn-primary">Add member</button>
+<button type="submit" class="btn btn-primary">Save</button>
    </form>
   </div>
    
@@ -69,6 +69,13 @@ export default {
     };
   },
   methods: {
+    fetchMember(id) {
+      this.$http
+        .get('http://phpslimapiapp/api/member/' + id)
+        .then(function(response) {
+          this.member = response.body;
+        });
+    },
     editMember(e) {
       e.preventDefault();
       let editedMember = {
@@ -80,7 +87,7 @@ export default {
         skype: this.member.skype,
         country: this.member.country
       };
-      console.log(newMember);
+
       this.$http
         .put(
           'http://phpslimapiapp/api/member/update/' + this.$route.params.id,
@@ -97,6 +104,9 @@ export default {
           });
         });
     }
+  },
+  created: function() {
+    this.fetchMember(this.$route.params.id);
   }
 };
 </script>
